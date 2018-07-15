@@ -16,8 +16,9 @@ for (var i = 0; i < pacientes.length; i++) {
 		altura = pacientes[i].querySelector(".info-altura").textContent;
 		imc = pacientes[i].querySelector(".info-imc");
 		imc.textContent = calculaImc(peso,altura);
+	}else{
+		pacientes[i].classList.add("paciente-invalido");
 	}
-
  }
 
 
@@ -38,11 +39,13 @@ function validaPesoEAltura (paciente) {
 		if(altura > 0 && altura <= 3.0){
 			return true;
 		}else{
-			alert("Altura do paciente " + paciente.querySelector(".info-nome").textContent + " inválida");
+			// alert("Altura do paciente " + paciente.querySelector(".info-nome").textContent + " inválida");			
+			paciente.querySelector(".info-imc").textContent = "Altura inválida!";
 			return false;
 		}
 	}else{
-		alert("Peso do paciente " + paciente.querySelector(".info-nome").textContent + " inválida");
+		// alert("Peso do paciente " + paciente.querySelector(".info-nome").textContent + " inválida");
+		paciente.querySelector(".info-imc").textContent = "Peso inválido!";
 		return false;
 	}
 }
