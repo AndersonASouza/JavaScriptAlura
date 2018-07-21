@@ -9,15 +9,13 @@ var peso, altura, imc=0;
 
 
 for (var i = 0; i < pacientes.length; i++) {	
-	// peso = pacientes[i].querySelector(".info-peso").textContent;
-	// altura = pacientes[i].querySelector(".info-altura").textContent;
-	// imc = pacientes[i].querySelector(".info-imc");
-	
 	var erros = validaPesoEAltura(pacientes[i]);
-
 	if (erros.length>0) {
 		invalidaClassePaciente(erros,pacientes[i]);
 	} else {
+		peso = pacientes[i].querySelector(".info-peso").textContent;
+		altura = pacientes[i].querySelector(".info-altura").textContent;
+		imc = pacientes[i].querySelector(".info-imc");
 		imc.textContent = calculaImc(peso,altura);	
 	}
  }
