@@ -9,7 +9,7 @@ var peso, altura, imc=0;
 
 
 for (var i = 0; i < pacientes.length; i++) {	
-	var erros = validaPesoEAltura(pacientes[i]);
+	var erros = validaPaciente(pacientes[i]);
 	if (erros.length>0) {
 		invalidaClassePaciente(erros,pacientes[i]);
 	} else {
@@ -35,6 +35,11 @@ function invalidaClassePaciente (erros,paciente) {
 			imc.textContent = "Peso e Altura inválidos";
 			paciente.classList.add("paciente-invalido");
 			return paciente;
+
+		case 3:
+			imc.textContent = "Nome, Peso e Altura inválidos";
+			paciente.classList.add("paciente-invalido");
+			return paciente;
 		default:
 			break;
 	}
@@ -49,10 +54,15 @@ function calculaImc (peso, altura) {
 }
 
 
-function validaPesoEAltura (paciente) {
+function validaPaciente (paciente) {
 	var peso = paciente.querySelector(".info-peso");
 	var altura = paciente.querySelector(".info-altura");
+	var nome = paciente.querySelector(".info-nome");
 	var erros = [];
+
+	if(!validaNome(nome.textContent)){
+		erros.push("O campo de nome não pode estar vazio");
+	}
 
 	if(!validaPeso(peso.textContent)){
 		// paciente.querySelector(".info-imc").textContent = "Peso inválido!";
@@ -91,5 +101,9 @@ function validaPeso (peso){
 function validaAltura (altura){
 	return (altura > 0 && altura <= 3.0);
 
+}
+
+function validaNome (nome){
+	return (nome.length>0);
 }
 

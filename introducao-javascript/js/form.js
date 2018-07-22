@@ -9,16 +9,18 @@ botaoAdicionar.addEventListener("click", function (event) {
 
 	var pacienteTr = montaTr(paciente);
 
-	var erros = validaPesoEAltura(pacienteTr);
+	var erros = validaPaciente(pacienteTr);
 
 	var tabela = document.querySelector("#tabela-pacientes");
 
 	if(erros.length>0){
 		pacienteTr = invalidaClassePaciente(erros,pacienteTr);
 		exibeMensagensDeErro(erros);
+	}else{
+		tabela.appendChild(pacienteTr);
+		form.reset();
 	}
-	tabela.appendChild(pacienteTr);
-	form.reset();
+
 	
 
 	// if (isvalid==0){
@@ -72,13 +74,19 @@ function montaTd(dado,classe){
 
 function exibeMensagensDeErro (erros) {
 	var ul = document.querySelector("#mensagens-erro-pesoaltura");
-	for (var i = 0; i < erros.length; i++) {
+	// for (var i = 0; i < erros.length; i++) {
+	// 	var li = document.createElement("li");
+	// 	li.textContent = erros[i];
+	// 	var br = document.createElement("br");
+	// 	ul.appendChild(br);
+	// 	ul.appendChild(li);
+	// 	ul.appendChild(br);
+	// }
+
+	erros.forEach(function(erro) {
 		var li = document.createElement("li");
-		li.textContent = erros[i];
-		var br = document.createElement("br");
-		ul.appendChild(br);
+		li.textContent = erro;
 		ul.appendChild(li);
-		ul.appendChild(br);
-	}
+	});
 	
 }
