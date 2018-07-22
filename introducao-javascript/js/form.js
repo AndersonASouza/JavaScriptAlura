@@ -2,7 +2,6 @@ var botaoAdicionar = document.querySelector("#adicionar-paciente");
 
 botaoAdicionar.addEventListener("click", function (event) {
 	event.preventDefault();
-	console.log("Ul de antes \n"+ul);
 
 	var form = document.querySelector("#form-adiciona");
 
@@ -24,7 +23,6 @@ botaoAdicionar.addEventListener("click", function (event) {
 		tabela.appendChild(pacienteTr);
 		form.reset();
 	}
-	console.log("Ul fim do evento \n" + ul);
 
 
 })

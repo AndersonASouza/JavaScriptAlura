@@ -30,7 +30,6 @@ function invalidaClassePaciente (erros,paciente) {
 	erros.forEach(function(erro){
 		imc.textContent += erro;
 	});
-	console.log(paciente);
 	return paciente;
 
 	// switch (erros.length) {
