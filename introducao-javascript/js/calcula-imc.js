@@ -25,24 +25,32 @@ function invalidaClassePaciente (erros,paciente) {
 	altura = paciente.querySelector(".info-altura").textContent;
 	imc = paciente.querySelector(".info-imc");
 
-	switch (erros.length) {
-		case 1:
-			imc.textContent = erros[0];
-			paciente.classList.add("paciente-invalido");
-			return paciente;
+	paciente.classList.add("paciente-invalido");
 
-		case 2: 
-			imc.textContent = "Peso e Altura inválidos";
-			paciente.classList.add("paciente-invalido");
-			return paciente;
+	erros.forEach(function(erro){
+		imc.textContent += erro;
+	});
+	console.log(paciente);
+	return paciente;
 
-		case 3:
-			imc.textContent = "Nome, Peso e Altura inválidos";
-			paciente.classList.add("paciente-invalido");
-			return paciente;
-		default:
-			break;
-	}
+	// switch (erros.length) {
+	// 	case 1:
+	// 		imc.textContent = erros[0];
+	// 		paciente.classList.add("paciente-invalido");
+	// 		return paciente;
+
+	// 	case 2: 
+	// 		imc.textContent = "Peso e Altura inválidos";
+	// 		paciente.classList.add("paciente-invalido");
+	// 		return paciente;
+
+	// 	case 3:
+	// 		imc.textContent = "Nome, Peso e Altura inválidos";
+	// 		paciente.classList.add("paciente-invalido");
+	// 		return paciente;
+	// 	default:
+	// 		break;
+	// }
 
 
 }
@@ -58,22 +66,31 @@ function validaPaciente (paciente) {
 	var peso = paciente.querySelector(".info-peso");
 	var altura = paciente.querySelector(".info-altura");
 	var nome = paciente.querySelector(".info-nome");
+	var gordura = paciente.querySelector(".info-gordura");
 	var erros = [];
 
 	if(!validaNome(nome.textContent)){
-		erros.push("O campo de nome não pode estar vazio");
+		erros.push("O nome não pode estar vazio");
 	}
 
-	if(!validaPeso(peso.textContent)){
-		// paciente.querySelector(".info-imc").textContent = "Peso inválido!";
-		// paciente.classList.add("paciente-invalido");
+	if(!validaGordura(gordura.textContent)){
+		erros.push("A gordura não pode ser em branco");
+	}
+
+	if(peso.textContent.length == 0){
+		erros.push("O peso não pode ser em branco");
+	}else{
+		if(!validaPeso(peso.textContent)){
 		erros.push("Peso inválido");
+		}
 	}
 
-	if(!validaAltura(altura.textContent)){
-		// paciente.querySelector(".info-imc").textContent = "Altura inválida!";
-		// paciente.classList.add("paciente-invalido");
+	if(altura.textContent.length == 0){
+		erros.push("A altura não pode ser em branco");
+	}else{
+		if(!validaAltura(altura.textContent)){
 		erros.push("Altura inválida");
+		}
 	}
 
 	// var peso = paciente.querySelector(".info-peso").textContent;
@@ -107,3 +124,6 @@ function validaNome (nome){
 	return (nome.length>0);
 }
 
+function validaGordura(gordura){
+	return (gordura.length > 0);
+}
