@@ -2,6 +2,7 @@ var botaoAdicionar = document.querySelector("#adicionar-paciente");
 
 botaoAdicionar.addEventListener("click", function (event) {
 	event.preventDefault();
+	console.log("Ul de antes \n"+ul);
 
 	var form = document.querySelector("#form-adiciona");
 
@@ -13,6 +14,9 @@ botaoAdicionar.addEventListener("click", function (event) {
 
 	var tabela = document.querySelector("#tabela-pacientes");
 
+	var ul = document.querySelector("#mensagens-erro-formulario");
+	ul.innerHTML = "";
+
 	if(erros.length>0){
 		pacienteTr = invalidaClassePaciente(erros,pacienteTr);
 		exibeMensagensDeErro(erros);
@@ -20,25 +24,9 @@ botaoAdicionar.addEventListener("click", function (event) {
 		tabela.appendChild(pacienteTr);
 		form.reset();
 	}
+	console.log("Ul fim do evento \n" + ul);
 
-	
 
-	// if (isvalid==0){
-	// 	tabela.appendChild(pacienteTr);
-	// 	form.reset();
-	// 	var mensagem = document.querySelector("#mensagem-erro-pesoaltura");
-	// 	mensagem.textContent = "";
-	// }else{
-	// 	var mensagem = document.querySelector("#mensagem-erro-pesoaltura");
-	// 	if(isvalid==1){
-	// 	mensagem.textContent = "O peso digitado é inválido";
-
-	// 	}else if(isvalid==2){
-	// 		mensagem.textContent = "A altura digitada é inválida";
-	// 	}
-	// }
-	
-	
 })
 
 function obtemPacienteDoFormulario(form) {	
@@ -73,16 +61,7 @@ function montaTd(dado,classe){
 }
 
 function exibeMensagensDeErro (erros) {
-	var ul = document.querySelector("#mensagens-erro-pesoaltura");
-	// for (var i = 0; i < erros.length; i++) {
-	// 	var li = document.createElement("li");
-	// 	li.textContent = erros[i];
-	// 	var br = document.createElement("br");
-	// 	ul.appendChild(br);
-	// 	ul.appendChild(li);
-	// 	ul.appendChild(br);
-	// }
-
+	var ul = document.querySelector("#mensagens-erro-formulario");
 	erros.forEach(function(erro) {
 		var li = document.createElement("li");
 		li.textContent = erro;
