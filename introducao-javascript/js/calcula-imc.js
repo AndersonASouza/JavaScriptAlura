@@ -5,11 +5,12 @@ var pacientes = document.querySelectorAll(".paciente");
 
 // var paciente = document.querySelector("paciente");
 
-var peso, altura, imc=0;
+var peso, altura, imc;
 
 
 for (var i = 0; i < pacientes.length; i++) {	
 	var erros = validaPaciente(pacientes[i]);
+
 	if (erros.length>0) {
 		invalidaClassePaciente(erros,pacientes[i]);
 	} else {
@@ -26,32 +27,13 @@ function invalidaClassePaciente (erros,paciente) {
 	imc = paciente.querySelector(".info-imc");
 
 	paciente.classList.add("paciente-invalido");
+	imc.textContent = null;
 
 	erros.forEach(function(erro){
 		imc.textContent += erro;
+
 	});
 	return paciente;
-
-	// switch (erros.length) {
-	// 	case 1:
-	// 		imc.textContent = erros[0];
-	// 		paciente.classList.add("paciente-invalido");
-	// 		return paciente;
-
-	// 	case 2: 
-	// 		imc.textContent = "Peso e Altura inválidos";
-	// 		paciente.classList.add("paciente-invalido");
-	// 		return paciente;
-
-	// 	case 3:
-	// 		imc.textContent = "Nome, Peso e Altura inválidos";
-	// 		paciente.classList.add("paciente-invalido");
-	// 		return paciente;
-	// 	default:
-	// 		break;
-	// }
-
-
 }
 
 function calculaImc (peso, altura) {
@@ -91,22 +73,6 @@ function validaPaciente (paciente) {
 		erros.push("Altura inválida");
 		}
 	}
-
-	// var peso = paciente.querySelector(".info-peso").textContent;
-	// var altura = paciente.querySelector(".info-altura").textContent;
-	// var erros = [];
-
-	// if(!validaPeso(peso)){
-	// 	paciente.querySelector(".info-imc").textContent = "Peso inválido!";
-	// 	paciente.classList.add("paciente-invalido");
-	// 	erros.push("O peso digitado é inválido");
-	// }
-
-	// if(!validaAltura(altura)){
-	// 	paciente.querySelector(".info-imc").textContent = "Altura inválida!";
-	// 	paciente.classList.add("paciente-invalido");
-	// 	erros.push("A altura digitada é inválida");
-	// }
 	return erros;
 }
 
