@@ -9,10 +9,8 @@ campoFiltro.addEventListener("input", function(){
 			var nome = tdNome.textContent;
 			var exp = new RegExp(this.value,"i");					
 			if (!exp.test(nome)) {
-				console.log("Não Passou");
 				pacientes[i].classList.add("invisivel");
 			}else{
-				console.log("Passou");
 				pacientes[i].classList.remove("invisivel");
 			}
 		}
